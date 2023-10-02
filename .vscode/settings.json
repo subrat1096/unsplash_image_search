@@ -1,0 +1,9 @@
+{
+  "emmet.includeLanguages": {
+    "vue-html": "html",
+    "javascript": "javascriptreact",
+    "razor": "html",
+    "plaintext": "jade",
+    "typescript": "typescriptreact"
+  }
+}
