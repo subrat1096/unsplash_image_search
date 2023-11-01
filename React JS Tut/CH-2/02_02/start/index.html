@@ -11,31 +11,37 @@
       crossorigin
       src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"
     ></script>
-    <title>Functional Component</title>
+    <title>Props In React</title>
   </head>
   <body>
     <div id="root"></div>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script type="text/babel">
-      // first component as a function
-      function Header() {
+      function Header(props) {
+        //console.log(props);
         return (
           <header>
-            <h1>Welcome to my website!</h1>
+            <h1>Welcome to {props.name}'s website!</h1>
           </header>
         );
       }
-      function Main() {
+      function Main(props) {
         return (
           <section>
-            <p>This is the main section of the page.</p>
+            <p>
+              I have expertise in the field of web development. I have skills on{" "}
+              {props.react}, {props.html}, {props.css}, {props.js}, {props.node}
+              , {props.express} & {props.mongo}{" "}
+            </p>
           </section>
         );
       }
-      function Footer() {
+      function Footer(props) {
         return (
           <footer>
-            <p>&copy; {new Date().getFullYear()} My Website</p>
+            <p>
+              &copy; {new Date().getFullYear()} {props.name} Website
+            </p>
           </footer>
         );
       }
@@ -43,13 +49,20 @@
       function App() {
         return (
           <div>
-            <Header />
-            <Main />
-            <Footer />
+            <Header name="Subrat" />
+            <Main
+              react="React"
+              html="HTML"
+              css="CSS"
+              js="JavaScript"
+              node="NodeJS"
+              express="ExpressJS"
+              mongo="MongoDb"
+            />
+            <Footer name="Subrat's" />
           </div>
         );
       }
-
       ReactDOM.render(<App />, document.getElementById("root"));
     </script>
   </body>

@@ -11,45 +11,60 @@
       crossorigin
       src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"
     ></script>
-    <title>Functional Component</title>
+    <title>Object as Props</title>
   </head>
   <body>
     <div id="root"></div>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script type="text/babel">
-      // first component as a function
-      function Header() {
+      const person = { name: "Subrat", age: 32 };
+      const year = new Date().getFullYear();
+      const skills = [
+        "HTML",
+        "CSS",
+        "JS",
+        "NodeJS",
+        "ReactJS",
+        "ExpressJS",
+        "MongoDB",
+        "Mongoose",
+      ];
+      function Header(props) {
         return (
           <header>
-            <h1>Welcome to my website!</h1>
+            <h1>Welcome to {props.person.name}'s website </h1>
           </header>
         );
       }
-      function Main() {
+      function Main(props) {
         return (
           <section>
-            <p>This is the main section of the page.</p>
+            <ul>
+              {props.skills.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
           </section>
         );
       }
-      function Footer() {
+      function Footer(props) {
         return (
           <footer>
-            <p>&copy; {new Date().getFullYear()} My Website</p>
+            <h1>
+              © {props.year}, All rights reserved {props.person.name}'s website{" "}
+            </h1>
           </footer>
         );
       }
-
       function App() {
         return (
           <div>
-            <Header />
-            <Main />
-            <Footer />
+            <Header person={person} />
+            <Main skills={skills} />
+            <Footer year={year} person={person} />
           </div>
         );
       }
-
       ReactDOM.render(<App />, document.getElementById("root"));
     </script>
   </body>
