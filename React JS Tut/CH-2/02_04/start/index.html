@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <title>Object from array as props</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      const biryani = [
+        "Veg Biryani",
+        "Egg Biryani",
+        "Chicken Biryani",
+        "Mutton Biryani",
+      ];
+      const chicken = [
+        "Chicken Kadai",
+        "Butter Chicken",
+        "Chicken Kasa",
+        "Chicken Champ",
+        "Chicken 65",
+        "Chicken Kebabs",
+      ];
+      const mutton = [
+        "Mutton Kebabs",
+        "Mutton Handi",
+        "Mutton Keema",
+        "Mutton Kasa",
+      ];
+      const dishes = biryani.map((item, index) => ({
+        id: index,
+        title: item,
+        description: `This is ${item}`,
+        price: (index + 1) * 80,
+      }));
+      function Header(props) {
+        return (
+          <header>
+            <menu>
+              <a href="./">
+                <h2>Kake da Dhaba</h2>
+              </a>
+            </menu>
+          </header>
+        );
+      }
+      function Main(props) {
+        return (
+          <section>
+            <ul>
+              {props.dishes.map((item) => (
+                <li key={item.id} style={{ listStyle: "none" }}>
+                  <h4>{item.title}</h4>
+                  <p>{item.description}</p>
+                  <span>{item.price}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        );
+      }
+      function Footer(props) {
+        return (
+          <footer>
+            <p>
+              © {new Date().getFullYear()} {props.name}'s kitchen
+            </p>
+          </footer>
+        );
+      }
+      function App() {
+        return (
+          <div>
+            <Header />
+            <Main dishes={dishes} />
+            <Footer name="Kake da Dhaba" />
+          </div>
+        );
+      }
+      ReactDOM.render(<App />, document.getElementById("root"));
+    </script>
+  </body>
+</html>
